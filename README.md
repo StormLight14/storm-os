@@ -16,7 +16,7 @@ If you are using `rust-analyzer` with VSCode, it is recommended to add this to y
 ```
 
 ## Running in VM
-Firstly install QEMU, then run this after creating the bootable disk image: `qemu-system-x86_64 -drive format=raw,file=target/x86_64-storm-os/debug/bootimage-storm-os.bin`
+Firstly install QEMU, then run one of these after creating the bootable disk image: `cargo run`, `bootimage runner`, or `qemu-system-x86_64 -drive format=raw,file=target/x86_64-storm-os/debug/bootimage-storm-os.bin`. They all do the same thing.
 
 If it works, you should see this.
 
