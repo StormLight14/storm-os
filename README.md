@@ -6,6 +6,8 @@ If you haven't done this before, you will need to run `rustup component add rust
 
 Add `bootloader` as a dependency in cargo.toml like this: `bootloader = "0.9.8"`, then install the `bootimage` tool with `cargo install bootimage`.
 
+Add the llvm tools rustup component: `rustup component add llvm-tools-preview`
+
 Run `cargo bootimage` and it should create a bootable disk image.
 
 If you are using `rust-analyzer` with VSCode, it is recommended to add this to your `settings.json` file in order to avoid errors being shown that aren't actually happening.
