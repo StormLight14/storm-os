@@ -19,4 +19,5 @@ If you are using `rust-analyzer` with VSCode, it is recommended to add this to y
 Firstly install QEMU, then run this after creating the bootable disk image: `qemu-system-x86_64 -drive format=raw,file=target/x86_64-storm-os/debug/bootimage-storm-os.bin`
 
 If it works, you should see this.
-![StormOS working no way](./screenshots/storm-os.png)
+
+![StormOS working no way](./.screenshots/storm-os.png)
