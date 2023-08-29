@@ -18,7 +18,7 @@ If you are using `rust-analyzer` with VSCode, it is recommended to add this to y
 ```
 
 ## Running in VM
-Firstly install QEMU, then run `cargo run`.
+Run `cargo run`. If it doesn't work, you may need to install QEMU for your system.
 
 If it works, you should see this.
 
