@@ -3,6 +3,7 @@
 
 use core::panic::PanicInfo;
 use vga_buffer::{ColorCode, Color};
+use core::fmt::Write;
 
 mod vga_buffer;
 
@@ -14,6 +15,6 @@ fn panic(_info: &PanicInfo) -> ! {
 
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
-    vga_buffer::print("Hello World; 你好地球!", ColorCode::new(Color::LightRed, Color::Black));
+    write!(vga_buffer::WRITER.lock(), "Hello World; 你好地球!").unwrap();
     loop {}
 }
