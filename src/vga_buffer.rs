@@ -65,6 +65,9 @@ pub struct Writer {
 }
 
 impl Writer {
+    pub fn set_color_code(&mut self, color_code: ColorCode) {
+        self.color_code = color_code;
+    }
     pub fn write_byte(&mut self, byte: u8) {
         
         match byte {

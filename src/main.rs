@@ -16,7 +16,7 @@ fn panic(info: &PanicInfo) -> ! {
 
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
+    vga_buffer::WRITER.lock().set_color_code(ColorCode::new(Color::LightRed, Color::Black));
     println!("Hello World!");
-    panic!("test panic!!!");
     loop {}
 }
