@@ -48,7 +48,9 @@ const BUFFER_WIDTH: usize = 80;
 lazy_static! {
     pub static ref WRITER: Mutex<Writer> = Mutex::new(Writer {
         column_position: 0,
-        color_code: ColorCode::new(Color::Yellow, Color::Black),
+        foreground: Color::LightRed,
+        background: Color::Black,
+        color_code: ColorCode::new(Color::LightRed, Color::Black),
         buffer: unsafe { &mut *(0xb8000 as *mut Buffer) },
     });
 }
@@ -60,6 +62,8 @@ struct Buffer {
 
 pub struct Writer {
     column_position: usize,
+    foreground: Color,
+    background: Color,
     color_code: ColorCode,
     buffer: &'static mut Buffer
 }
@@ -67,6 +71,14 @@ pub struct Writer {
 impl Writer {
     pub fn set_color_code(&mut self, color_code: ColorCode) {
         self.color_code = color_code;
+    }
+    pub fn set_foreground(&mut self, color: Color) {
+        self.color_code = ColorCode::new(color, self.background);
+        self.foreground = color;
+    }
+    pub fn set_background(&mut self, color: Color) {
+        self.color_code = ColorCode::new(self.foreground, color);
+        self.background = color;
     }
     pub fn write_byte(&mut self, byte: u8) {
         
