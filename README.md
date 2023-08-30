@@ -4,7 +4,7 @@ Very basic OS being created following this blog: https://os.phil-opp.com/
 ## Setup
 If you haven't done this before, you will need to run `rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu` (will vary depending on the OS you are currently running) for Rust nightly to work.
 
-Add `bootloader` as a dependency in cargo.toml like this: `bootloader = "0.9.8"`, then install the `bootimage` tool with `cargo install bootimage`.
+Install the `bootimage` tool with `cargo install bootimage`.
 
 Add the llvm tools rustup component: `rustup component add llvm-tools-preview`
 
