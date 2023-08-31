@@ -2,8 +2,7 @@
 Very basic OS being created following this blog: https://os.phil-opp.com/
 
 ## Setup
-If you haven't done this before, you will need to run `rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu` (will vary depending on the OS you are currently running) for Rust nightly to work.
-You may also need to do `rustup install nightly`.
+If you haven't done this before, you will need to run `rustup install nightly` then `rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu` (will vary depending on the OS you are currently running) for Rust nightly to work.
 
 Install the `bootimage` tool with `cargo install bootimage`.
 
