@@ -16,11 +16,9 @@ fn panic(info: &PanicInfo) -> ! {
 
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
+    vga_buffer::WRITER.lock().set_foreground(Color::LightRed);
+    println!("StormOS");
     vga_buffer::WRITER.lock().set_foreground(Color::LightBlue);
-    //vga_buffer::WRITER.lock().set_background(Color::White);
-    
-    for i in 1..=100 {
-        println!("Hello World, x{}", i);
-    }
+    println!("Hello World!");
     loop {}
 }
