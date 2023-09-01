@@ -3,7 +3,6 @@
 
 use core::panic::PanicInfo;
 use vga_buffer::{ColorCode, Color};
-use core::fmt::Write;
 
 mod vga_buffer;
 

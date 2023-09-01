@@ -1,8 +1,8 @@
-use volatile::Volatile;
 use core::fmt;
 use core::fmt::Write;
 use lazy_static::lazy_static;
 use spin::Mutex;
+use volatile::Volatile;
 
 #[allow(dead_code)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -65,7 +65,7 @@ pub struct Writer {
     foreground: Color,
     background: Color,
     color_code: ColorCode,
-    buffer: &'static mut Buffer
+    buffer: &'static mut Buffer,
 }
 
 impl Writer {
@@ -81,7 +81,6 @@ impl Writer {
         self.background = color;
     }
     pub fn write_byte(&mut self, byte: u8) {
-        
         match byte {
             b'\n' => self.new_line(),
             byte => {
@@ -110,7 +109,6 @@ impl Writer {
                 // not part of printable ASCII range
                 _ => self.write_byte(0xfe),
             }
-
         }
     }
 
@@ -126,13 +124,14 @@ impl Writer {
     }
 
     fn clear_row(&mut self, row: usize) {
-        let blank = ScreenChar {ascii_character: b' ',
-        color_code: self.color_code,
-    };
+        let blank = ScreenChar {
+            ascii_character: b' ',
+            color_code: self.color_code,
+        };
 
-    for col in 0..BUFFER_WIDTH {
-        self.buffer.chars[row][col].write(blank);
-    }
+        for col in 0..BUFFER_WIDTH {
+            self.buffer.chars[row][col].write(blank);
+        }
     }
 }
 
@@ -140,7 +139,6 @@ impl fmt::Write for Writer {
     fn write_str(&mut self, s: &str) -> fmt::Result {
         self.write_string(s);
         Ok(())
-    }
 }
 
 // ----- macros --------
@@ -159,3 +157,4 @@ macro_rules! println {
 pub fn _print(args: fmt::Arguments) {
     WRITER.lock().write_fmt(args).unwrap();
 }
+
