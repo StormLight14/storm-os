@@ -139,6 +139,7 @@ impl fmt::Write for Writer {
     fn write_str(&mut self, s: &str) -> fmt::Result {
         self.write_string(s);
         Ok(())
+    }
 }
 
 // ----- macros --------
@@ -157,4 +158,3 @@ macro_rules! println {
 pub fn _print(args: fmt::Arguments) {
     WRITER.lock().write_fmt(args).unwrap();
 }
-
