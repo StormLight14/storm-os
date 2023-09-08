@@ -10,10 +10,20 @@ use vga_buffer::Color;
 mod serial;
 mod vga_buffer;
 
-/// This function is called on panic.
+#[cfg(not(test))] // new attribute
 #[panic_handler]
 fn panic(info: &PanicInfo) -> ! {
-    serial_println!("{}", info);
+    println!("{}", info);
+    loop {}
+}
+
+// panic handler in test mode
+#[cfg(test)]
+#[panic_handler]
+fn panic(info: &PanicInfo) -> ! {
+    serial_println!("[failed]\n");
+    serial_println!("Error: {}\n", info);
+    exit_qemu(QemuExitCode::Failed);
     loop {}
 }
 
